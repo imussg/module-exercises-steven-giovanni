@@ -3,8 +3,8 @@
 
 // eslint-disable-next-line no-unused-vars
 const store = (function () {
-	return {
-		items: [
+  return {
+    items: [
 	    { id: cuid(), name: 'apples', checked: false },
 	    { id: cuid(), name: 'oranges', checked: false },
 	    { id: cuid(), name: 'milk', checked: true },
@@ -25,7 +25,7 @@ const store = (function () {
 	  			name: n,
 	  			checked: false
 	  		});
-	  	} catch(err) {console.log("in the store version of this error");}
+	  	} catch(err) {console.log('in the store version of this error');}
 	  },
 	  findAndToggleChecked: function(id) {
 	  	const item = this.findById(id);
@@ -36,12 +36,18 @@ const store = (function () {
 		  	Item.validateName(name);
 		  	const item = this.findById(id);
 		  	item.name = name;
-		} catch(err) {console.log("cannot update name");}
+      } catch(err) {console.log('cannot update name');}
 	  },
 	  findAndDelete: function(id) {
 	  	this.items.splice(this.items.findIndex(function(item) {
 	  		return item.id === id;
 	  	}), 1);
-	  }
-	};
+		},
+		toggleCheckedFilter: function(){
+			this.hideCheckedItems = !this.hideCheckedItems;
+		},
+		setSearchTerm(arg){
+			this.searchTerm = arg;
+		},
+  };
 }() );
